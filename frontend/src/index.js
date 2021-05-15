@@ -5,7 +5,7 @@ import App from "./App";
 
 ReactDOM.render(
   <>
-    <h1>Hello Anshika!!!!</h1>
+    <App />
   </>,
   document.getElementById("root")
 );
