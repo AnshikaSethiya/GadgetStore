@@ -5,8 +5,12 @@ const mongoose = require("mongoose");
 const app = express();
 // importing routes
 const userRoute = require("./routes/Auth.routes");
+//product routes
+const productRoute = require("./routes/product.routes");
+
 app.use(bodyParser.json())
 app.use(userRoute);
+app.use(productRoute)
 
 //setting connection b/w node and db
 mongoose

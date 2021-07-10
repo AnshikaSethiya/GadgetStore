@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema(
     {
+        item_id:{
+            type:String,
+            required:true,
+        },
         item_name:{
             type:String,
             required:true,
