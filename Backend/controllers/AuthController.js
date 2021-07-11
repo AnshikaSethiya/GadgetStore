@@ -14,7 +14,7 @@ const register = async (req,res,next) => {
         const hashedPass = bcrypt.hashSync(req.body.password, 10);
         const isUser = await UserData.findOne({email:req.body.email})
         if(isUser){
-            res.status(400).send("User already exist!! ")
+            res.status(401).send("User already exist!! ")
         }else{
                 const user = new UserData({
                  name:req.body.name,
@@ -23,8 +23,9 @@ const register = async (req,res,next) => {
                  password:hashedPass,
                  address:req.body.address
                  });
-                await user.save()
-            res.status(200).send("User Added Successfully!!");
+                await user.save();
+                console.log(user);
+            res.status(201).send("User Added Successfully!!");
         }
     } catch (error) {
         console.log("Register Error: ",error)

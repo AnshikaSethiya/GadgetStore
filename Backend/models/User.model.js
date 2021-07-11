@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 const Schema = mongoose.Schema;
 
 //creating schema 
@@ -9,14 +10,17 @@ const userSchema = new Schema(
         },
         email:{
             type:String,
-            trim: true,
-            lowercase: true,
-            unique: true,
-            required: 'Email address is required',
-            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+            required:true,
+            unique: [true,"Email id already exists"],
+            validate(value){
+                if(!validator.isEmail(value)){
+                    throw new Error("Invalid Email");
+                }
+            }
         },
         contact_No:{
             type:Number,
+            min:10
         },
         password:{
             type:String,

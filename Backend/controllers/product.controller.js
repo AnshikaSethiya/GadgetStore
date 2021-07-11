@@ -1,6 +1,7 @@
 const productData = require("../models/Product.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
+const ProductData = require("../models/Product.model")
 
 
 const addProductController = async (req,res) => {
@@ -19,12 +20,25 @@ const addProductController = async (req,res) => {
             });
             await product.save();
             res.status(201).send("Product added successfully!!")
+            console.log(product);
         }
     } catch (error) {
         console.log("Add product Error: ",error);
     }
 }
 
+
+const getProductController = async(req,res) => {
+    try {
+        const getProduct = await productData.find();
+        res.status(200).send(getProduct);
+        console.log(getProduct);
+    } catch (error) {
+        console.log("get product error: ", error)
+    }
+}
+
 module.exports={
-    addProductController
+    addProductController,
+    getProductController
 }

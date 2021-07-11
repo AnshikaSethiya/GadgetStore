@@ -1,15 +1,15 @@
 const express = require("express")
 const router = express.Router();
 //import controller
-const {addProductController} = require("../controllers/product.controller")
+const {addProductController, getProductController} = require("../controllers/product.controller")
 //import middleware
 const authorization = require("../middleware/Authenticate")
 
 //post
-router.post('/admin/addProduct', addProductController)
+router.post('/admin/addProduct',addProductController)
 
-//get
-// router.get('/admin/getProduct',authorization, getProductController )
+// get
+router.get('/admin/getProduct', getProductController )
 
 //put
 // router.put('/admin/updateProduct',authorization, updateProductController )

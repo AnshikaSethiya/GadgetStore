@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken")
 
 //authenticateion for protected routes
 const authorization = async(res,req,next) => {
-    //middleware functio
+    //middleware function
     try{
         const token = req.header("Authorization").replace("Bearer ", "")
         const decoded = jwt.verify(token, "newuser");
