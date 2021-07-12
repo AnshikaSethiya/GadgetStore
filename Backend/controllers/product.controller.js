@@ -1,7 +1,6 @@
 const productData = require("../models/Product.model")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const ProductData = require("../models/Product.model")
 
 
 const addProductController = async (req,res) => {
@@ -38,7 +37,40 @@ const getProductController = async(req,res) => {
     }
 }
 
+const  getProductByIdController = async(req,res) => {
+    try {
+        // console.log("req.query: ",req.query)
+        const ProductId = req.query.ProductId;
+        const product = await productData.findById({_id:ProductId});
+        if(!product){
+            res.status(404).send("Product does not exist");
+        }else{
+            res.status(200).send(product)
+            console.log(product);
+        }
+    } catch (error) {
+        console.log("get product by id error : ",error);
+    }
+}
+
+const deleteProductController = async (req, res) => {
+    try{
+        console.log("req.query:", req.query);
+        const ProductId = req.query.ProductId;
+        const product = await productData.findByIdAndDelete({_id:ProductId});
+        if(!product){
+            res.status(404).send("Product does not exist!!")
+        }else{
+            res.status(200).send("Product deleted successfully!!")
+        }
+    }catch(error){
+        console.log("Error: ",error)
+    }
+}
+
 module.exports={
     addProductController,
-    getProductController
+    getProductController,
+    getProductByIdController,
+    deleteProductController
 }
