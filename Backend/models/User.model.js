@@ -10,7 +10,8 @@ const userSchema = new Schema(
         },
         email:{
             type:String,
-            required:true,
+            lowercase:true,
+            required:[true,"Please enter E-mail!!"],
             unique: [true,"Email id already exists"],
             validate(value){
                 if(!validator.isEmail(value)){
@@ -24,7 +25,8 @@ const userSchema = new Schema(
         },
         password:{
             type:String,
-            required:true,
+            required:[true,"Please enter Password!!"],
+            minLength:[6,"Minimum 6 characters required!!"]
         },
         address:{
             type:String,
@@ -34,11 +36,21 @@ const userSchema = new Schema(
             type:String,
             default:"user"
         },
+        cart:{
+            type:Array,
+            default:[]
+        }
 
     },
 
     {timestamps:true}
 );
+//fire a function after doc saved to db
+userSchema.post('save', function(doc, next){
+    console.log('new user created and saved', doc);
+    next();
+});
+
 
 const UserData = mongoose.model("UserData", userSchema);
 

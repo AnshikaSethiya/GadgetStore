@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
 }
 .image-text{
     width: 98.8vw;
@@ -13,15 +14,27 @@
 
 }
 .first-text{
-    margin-left:10rem;
+    margin-left:9rem;
     margin-top:12rem;
     line-break: auto;
 }
 .first-text h1{
-    font-size: 5rem;
+    font-size:4.5rem;
     color: #3D405B;
     font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: text 6s infinite;
 }
+@keyframes text{
+    0%{
+        width: 0ch;
+    }
+    50%{
+        width:20ch;
+    }
+}
+
 .shop-btn{
     margin-top: 2rem;
     /* padding-left: 1rem;
@@ -44,13 +57,45 @@
 }
   
 .first-img img{
-    margin-right:12rem;
+    margin-right:11rem;
     width: 18rem;
     height: 86vh;
+    top: 0;
 }
 
 
 /*-----------------------------------------------------------------------------*/
 .new-arrival{
-    
+    /* background-color: #F4F1DE; */
+    /* width: 99vw; */
+    height: 85vh;
+}
+.new-arrival h2{
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+
+/*-------------------------------------------------------------------------------------*/
+
+.images-grid{
+    background-color: #F4F1DE;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.img-unique{
+    width:45rem;
+    height: 40rem;
+}
+.img-big{
+    height:40rem;
+    width: 22rem;
+}
+.img-small{
+    width: 21rem;
+    height: 20rem;
+}
+.img-grid:hover{
+    transform: scale(0.9);
+    transition: ease-in-out all 0.1s;
 }

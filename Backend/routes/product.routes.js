@@ -6,10 +6,10 @@ const {addProductController, getProductController,  getProductByIdController, de
 const authorization = require("../middleware/Authenticate")
 
 //post
-router.post('/admin/addProduct',addProductController)
+router.post('/admin/addProduct',authorization ,addProductController)
 
 // get
-router.get('/admin/getProduct', getProductController )
+router.get('/getProduct', getProductController )
 
 //get product by id
 router.get('/admin/productById', getProductByIdController)

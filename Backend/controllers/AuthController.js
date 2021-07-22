@@ -4,13 +4,6 @@ const jwt = require("jsonwebtoken")
 
 const register = async (req,res,next) => {    
     try {
-        // bcrypt.hash(req.body.password, 10, function(err, hashedPass){
-        //     if(err){
-        //         res.json({
-        //             error:err
-        //         })
-        //     }
-        //   })
         const hashedPass = bcrypt.hashSync(req.body.password, 10);
         const isUser = await UserData.findOne({email:req.body.email})
         if(isUser){
@@ -41,7 +34,7 @@ const login = (req,res,next) => {
     .then(user => {
         if(user){
             bcrypt.compare(password, user.password, function(err,result){
-              if(err){
+              if(err){ 
                   res.json({
                       error:err
                   })
